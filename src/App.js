@@ -1,34 +1,29 @@
 import "milligram";
 import './App.css';
 import {useState} from "react";
+import LoginForm from "./LoginForm";
 
 function App() {
-    const [email, setEmail] = useState('');
-    const [loggedIn, setLoggedIn] = useState(false);
+    const [loggedIn, setLoggedIn] = useState('');
 
-    function login() {
+    function login(email) {
         if (email) {
-            setLoggedIn(true);
+            setLoggedIn(email);
         }
     }
 
     function logout() {
         setLoggedIn(false);
-        setEmail('');
     }
 
     let content;
     if (loggedIn) {
         content = <div>
-            <h2>Witaj {email}!</h2>
+            <h2>Witaj {loggedIn}!</h2>
             <button onClick={logout}>Wyloguj</button>
         </div>
     } else {
-        content = <div>
-            <label>Zaloguj się e-mailem</label>
-            <input type="text" value={email} onChange={(e) => setEmail(e.target.value)}/>
-            <button type="button" onClick={login}>Wchodzę</button>
-        </div>;
+        content = <LoginForm onLogin={login}/>;
     }
 
     return (
