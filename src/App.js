@@ -23,7 +23,11 @@ function App() {
             <button onClick={logout}>Wyloguj</button>
         </div>
     } else {
-        content = <LoginForm onLogin={login}/>;
+        content = <>
+            <LoginForm onLogin={login}/>
+            <LoginForm onLogin={login} buttonLabel="Zarejestruj się"/>
+            <LoginForm onLogin={login} buttonLabel="Zapisz się na newsletter"/>
+        </>;
     }
 
     return (
